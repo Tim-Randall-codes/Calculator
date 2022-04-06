@@ -17,16 +17,16 @@ struct ContentView: View {
             Spacer()
             LazyVGrid (columns: columns1) {
                 Group{
-                ButtonView(words: "AC")
-                ButtonView(words: "+/-")
-                ButtonView(words: "/")
-                ButtonView(words: "X")
-                ButtonView(words: "7")
-                ButtonView(words: "8")
-                ButtonView(words: "9")
-                ButtonView(words: "-")
-                ButtonView(words: "4")
-                ButtonView(words: "5")
+                    ButtonView(words: "AC")
+                    ButtonView(words: "+/-")
+                    ButtonView(words: "/")
+                    ButtonView(words: "X")
+                    ButtonView(words: "7")
+                    ButtonView(words: "8")
+                    ButtonView(words: "9")
+                    ButtonView(words: "-")
+                    ButtonView(words: "4")
+                    ButtonView(words: "5")
                 }
                 Group{
                     ButtonView(words: "6")
