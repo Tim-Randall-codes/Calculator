@@ -37,6 +37,7 @@ struct ContentView: View {
                         divideOperation = true
                         operationJustPressed = true
                         convertStringToNumber(input: display)
+                        decimalPointUsed = false
                     }, label:{
                         if divideOperation == true {
                             SelectedButtonView(words: "/")
@@ -49,6 +50,7 @@ struct ContentView: View {
                         multiplyOperation = true
                         operationJustPressed = true
                         convertStringToNumber(input: display)
+                        decimalPointUsed = false
                     }, label:{
                         if multiplyOperation == true {
                             SelectedButtonView(words: "X")
@@ -76,6 +78,7 @@ struct ContentView: View {
                         minusOperation = true
                         operationJustPressed = true
                         convertStringToNumber(input: display)
+                        decimalPointUsed = false
                     }, label:{
                         if minusOperation == true {
                             SelectedButtonView(words: "-")
@@ -105,6 +108,7 @@ struct ContentView: View {
                         plusOperation = true
                         operationJustPressed = true
                         convertStringToNumber(input: display)
+                        decimalPointUsed = false
                     }, label:{
                         if plusOperation == true {
                             SelectedButtonView(words: "+")
