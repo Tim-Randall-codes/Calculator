@@ -24,6 +24,7 @@ struct ContentView: View {
     @State var usingDouble: Bool = false
     @State var answerInt: Int = 0
     @State var answerDouble: Double = 0
+    @State var negative: Bool = false
     var body: some View {
         VStack{
             Spacer()
@@ -31,8 +32,16 @@ struct ContentView: View {
             Spacer()
             LazyVGrid (columns: columns1) {
                 Group{
-                    ButtonView(words: "AC")
-                    ButtonView(words: "+/-")
+                    Button(action:{
+                        allClear()
+                    }, label:{
+                        ButtonView(words: "AC")
+                    })
+                    Button(action:{
+                        plusNMinus()
+                    }, label:{
+                        ButtonView(words: "+/-")
+                    })
                     Button(action:{
                         divideOperation = true
                         operationJustPressed = true
@@ -151,15 +160,19 @@ struct ContentView: View {
                     convertStringToNumber2(input: display)
                     if plusOperation == true {
                         doAddition()
+                        plusOperation = false
                     }
                     if minusOperation == true {
                         doSubtraction()
+                        minusOperation = false
                     }
                     if multiplyOperation == true {
                         doMultiply()
+                        multiplyOperation = false
                     }
                     if divideOperation == true {
                         doDivide()
+                        divideOperation = false
                     }
                 }, label:{
                     ButtonView(words: "=")
@@ -240,6 +253,32 @@ struct ContentView: View {
         else {
             answerInt = int1 / int2
             display = String(answerInt)
+        }
+    }
+    func allClear() {
+        int1 = 0
+        int2 = 0
+        double1 = 0
+        double2 = 0
+        display = "0"
+        plusOperation = false
+        minusOperation = false
+        multiplyOperation = false
+        divideOperation = false
+        answerInt = 0
+        answerDouble = 0
+        negative = false
+        decimalPointUsed = false
+    }
+    func plusNMinus(){
+        if negative == false {
+            display = "-" + display
+            negative = true
+        }
+        else {
+            let removeCharacters: Set<Character> = ["-"]
+            display.removeAll(where: { removeCharacters.contains($0) } )
+            negative = false
         }
     }
 }
