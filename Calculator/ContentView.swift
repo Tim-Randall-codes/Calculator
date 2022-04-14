@@ -11,9 +11,6 @@ struct ContentView: View {
     var columns1: [GridItem] = [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10), GridItem(.flexible()), GridItem(.flexible())]
     var columns2: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     @State var display: String = "0"
-    @State var decimalPointUsed: Bool = false
-    @State var int1: Int = 0
-    @State var int2: Int = 0
     @State var double1: Double = 0
     @State var double2: Double = 0
     @State var operationJustPressed: Bool = false
@@ -46,10 +43,10 @@ struct ContentView: View {
                         divideOperation = true
                         operationJustPressed = true
                         convertStringToNumber(input: display)
-                        decimalPointUsed = false
                         plusOperation = false
                         minusOperation = false
                         multiplyOperation = false
+                        negative = false
                     }, label:{
                         if divideOperation == true {
                             SelectedButtonView(words: "/")
@@ -62,10 +59,10 @@ struct ContentView: View {
                         multiplyOperation = true
                         operationJustPressed = true
                         convertStringToNumber(input: display)
-                        decimalPointUsed = false
                         plusOperation = false
                         minusOperation = false
                         divideOperation = false
+                        negative = false
                     }, label:{
                         if multiplyOperation == true {
                             SelectedButtonView(words: "X")
@@ -93,10 +90,10 @@ struct ContentView: View {
                         minusOperation = true
                         operationJustPressed = true
                         convertStringToNumber(input: display)
-                        decimalPointUsed = false
                         plusOperation = false
                         multiplyOperation = false
                         divideOperation = false
+                        negative = false
                     }, label:{
                         if minusOperation == true {
                             SelectedButtonView(words: "-")
@@ -126,10 +123,10 @@ struct ContentView: View {
                         plusOperation = true
                         operationJustPressed = true
                         convertStringToNumber(input: display)
-                        decimalPointUsed = false
                         minusOperation = false
                         multiplyOperation = false
                         divideOperation = false
+                        negative = false
                     }, label:{
                         if plusOperation == true {
                             SelectedButtonView(words: "+")
@@ -204,72 +201,33 @@ struct ContentView: View {
         }
     }
     func addDecimalToString(input: String) {
-        if decimalPointUsed == false {
-            display += input
-            decimalPointUsed = true
-        }
+        display += input
     }
     func convertStringToNumber(input: String) {
-        if decimalPointUsed == false {
-            int1 = Int(input) ?? 0
-        }
-        else {
-            double1 = Double(input) ?? 0
-            usingDouble = true
-        }
+        double1 = Double(input) ?? 0
+        usingDouble = true
     }
     func convertStringToNumber2(input: String) {
-        if decimalPointUsed == false {
-            int2 = Int(input) ?? 0
-        }
-        else {
-            double2 = Double(input) ?? 0
-            usingDouble = true
-        }
+        double2 = Double(input) ?? 0
+        usingDouble = true
     }
     func doAddition() {
-        if usingDouble == true {
-            answerDouble = double1 + double2
-            display = String(answerDouble)
-        }
-        else {
-            answerInt = int1 + int2
-            display = String(answerInt)
-        }
+        answerDouble = double1 + double2
+        display = String(answerDouble)
     }
     func doSubtraction() {
-        if usingDouble == true {
-            answerDouble = double1 - double2
-            display = String(answerDouble)
-        }
-        else {
-            answerInt = int1 - int2
-            display = String(answerInt)
-        }
+        answerDouble = double1 - double2
+        display = String(answerDouble)
     }
     func doMultiply() {
-        if usingDouble == true {
-            answerDouble = double1 * double2
-            display = String(answerDouble)
-        }
-        else {
-            answerInt = int1 * int2
-            display = String(answerInt)
-        }
+        answerDouble = double1 * double2
+        display = String(answerDouble)
     }
     func doDivide() {
-        if usingDouble == true {
-            answerDouble = double1 / double2
-            display = String(answerDouble)
-        }
-        else {
-            answerInt = int1 / int2
-            display = String(answerInt)
-        }
+        answerDouble = double1 / double2
+        display = String(answerDouble)
     }
     func allClear() {
-        int1 = 0
-        int2 = 0
         double1 = 0
         double2 = 0
         display = "0"
@@ -280,7 +238,6 @@ struct ContentView: View {
         answerInt = 0
         answerDouble = 0
         negative = false
-        decimalPointUsed = false
     }
     func plusNMinus(){
         if negative == false {
